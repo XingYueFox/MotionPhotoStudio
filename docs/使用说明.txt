@@ -1,0 +1,49 @@
+动态照片工坊 Motion Photo Studio 1.0.0
+=========================================
+
+一、怎么用
+  1. 解压整个文件夹到任意位置（桌面、U 盘都行，路径里有中文也没关系）。
+  2. 双击 MotionPhotoStudio.exe。
+  3. 把装着照片和视频的文件夹拖进窗口，或点「选择文件夹」。
+  4. 选一个输出目录，点「开始合成」。
+
+  素材要求：同名的一对照片与视频，例如
+      IMG_0001.JPG  +  IMG_0001.MOV
+  照片支持 JPG / PNG / BMP / TIFF（非 JPG 会自动转成 JPEG 再打包），
+  视频支持 MOV / MP4。iPhone 实况照片导出后本来就是 IMG_XXXX.JPG +
+  IMG_XXXX.MOV 的同名一对，直接把整个文件夹拖进来即可。
+  程序会自动配对、递归子目录，把视频拼进照片尾部、写入 XMP 元数据，
+  生成 Windows 11「照片」与 Google 相册都能识别的动态照片。
+
+二、为什么是"一个 exe"
+  MotionPhotoStudio.exe 已经把界面（HTML/CSS/JS）、WebView2 托管程序集、
+  原生加载器全部打包进内部，所以主程序只有约 2 MB，不需要安装、不需要解压依赖。
+
+  唯一无法塞进 exe 的是微软的 WebView2 运行时（约 150 MB）。它的情况是：
+    · Windows 11 出厂自带，Windows 10 装了新版 Edge 也自带；
+    · 如果目标机器确实没有，程序会给出提示与官方下载地址；
+    · 需要完全离线时，把"固定版本运行时"解压成程序目录下的 runtime 文件夹，
+      程序会自动优先使用它（runtime\msedgewebview2.exe 存在即生效）。
+
+三、数据写在哪儿
+  data\            界面资源、设置、WebView2 用户数据（可随时删除，等于恢复默认）
+  bin\             从 exe 内解出的 WebView2Loader.dll（删掉会自动重建）
+  想彻底不留痕迹，直接删除整个文件夹即可 —— 不写注册表、不写系统目录。
+
+四、命令行（可选）
+  MotionPhotoStudio.exe --mux 照片.jpg 视频.mp4 输出.jpg
+  成功返回 0，失败返回 2，方便批处理调用。
+
+五、常见问题
+  · iPhone 实况照片转换：从 iPhone 导出的实况就是 IMG_XXXX.JPG + IMG_XXXX.MOV，
+    拖进来会自动配对合成；若视频是 HEVC 编码，Windows「照片」播放需要系统的
+    "HEVC 视频扩展"，Google 相册则不受影响。
+  · 合成后照片不动？确认视频是 H.264 的 MP4/MOV；HEVC 视频同样参考上一条。
+  · PNG 等其他格式的照片会被自动转成 JPEG（透明区域铺白底）再打包。
+  · 已经是动态照片的素材会被标记为"已是动态照片"，默认不重复合成。
+  · 输出体积 = 原照片 + 原视频，属于正常现象（这就是动态照片的结构）。
+
+六、来源与许可
+  合成思路参考 happycola233/MotionPhotoMaker 与 mihir-io/MotionPhotoMuxer，
+  但完全重写为本地 C# 实现，不再依赖 ExifTool 与 ffmpeg。
+  上游项目遵循 GPL-3.0，本程序同样以 GPL-3.0 发布。

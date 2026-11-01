@@ -1,0 +1,14 @@
+# 统一按文本处理，检出为 LF
+* text=auto eol=lf
+
+# PowerShell 脚本保持 CRLF；文件本身已带 UTF-8 BOM，Windows PowerShell 5.1 才能正确解析中文
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+
+# 二进制资源
+*.ico binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.mp4 binary
+*.mov binary

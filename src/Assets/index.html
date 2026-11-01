@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<title>动态照片工坊</title>
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+
+<div class="titlebar" id="titlebar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="m10.775 15.475l4.6-3.05q.225-.15.225-.425t-.225-.425l-4.6-3.05q-.25-.175-.513-.038T10 8.926v6.15q0 .3.263.438t.512-.038M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12q0-.8.125-1.6T2.5 8.825q.125-.4.513-.537t.737.062q.375.2.538.588t.037.812q-.15.55-.238 1.113T4 12q0 3.35 2.325 5.675T12 20t5.675-2.325T20 12t-2.325-5.675T12 4q-.6 0-1.187.087T9.65 4.35q-.425.125-.8-.025T8.3 3.8t-.013-.762t.563-.513q.75-.275 1.55-.4T12 2q2.075 0 3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22M4.438 6.563Q4 6.125 4 5.5t.438-1.062T5.5 4t1.063.438T7 5.5t-.437 1.063T5.5 7t-1.062-.437M12 12"/></svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-name">动态照片工坊</span>
+      <span class="brand-sub">Motion Photo Studio</span>
+    </div>
+  </div>
+  <div class="titlebar-spacer" data-drag></div>
+  <div class="win-actions">
+    <button class="win-btn" data-win="min" title="最小化" aria-label="最小化">
+      <svg viewBox="0 0 12 12"><path d="M2.5 6h7" /></svg>
+    </button>
+    <button class="win-btn" data-win="max" title="最大化" aria-label="最大化">
+      <svg viewBox="0 0 12 12"><rect x="2.6" y="2.6" width="6.8" height="6.8" rx="1.2" /></svg>
+    </button>
+    <button class="win-btn danger" data-win="close" title="关闭" aria-label="关闭">
+      <svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6" /></svg>
+    </button>
+  </div>
+</div>
+
+<div class="app">
+  <nav class="rail" role="tablist">
+    <button class="rail-item is-active" data-page="compose" role="tab">
+      <span class="rail-indicator" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24"><path d="M4 5.5h16v13H4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="9" cy="10" r="1.6"/><path d="M5 17l4.6-4.4L13 16l3-2.6 3 3.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <span class="rail-label">合成</span>
+    </button>
+    <button class="rail-item" data-page="results" role="tab">
+      <span class="rail-indicator" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.4 12.3l2.5 2.4 4.6-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="rail-label">结果</span>
+    </button>
+    <button class="rail-item" data-page="settings" role="tab">
+      <span class="rail-indicator" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24"><path d="M5 8h14M5 16h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="10" cy="8" r="2.3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="15" cy="16" r="2.3" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+      <span class="rail-label">设置</span>
+    </button>
+    <div class="rail-fill"></div>
+    <button class="rail-item rail-mini" data-page="about" role="tab">
+      <span class="rail-indicator" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="8" r="1.1"/></svg>
+      <span class="rail-label">关于</span>
+    </button>
+  </nav>
+
+  <main class="content" id="content">
+
+    <!-- ============== 合成 ============== -->
+    <section class="page is-active" id="page-compose" data-page="compose">
+      <div class="page-scroll">
+        <header class="hero">
+          <div class="hero-blob" aria-hidden="true"></div>
+          <p class="eyebrow">GOOGLE MOTION PHOTO</p>
+          <h1 class="display">让静态照片<br/><span class="accent">重新动起来</span></h1>
+          <p class="hero-sub">把同名的照片与视频合成一张会动的照片 —— 自动配对、批量处理，iPhone 实况与 PNG 素材也能直接转。成品在 Windows 11「照片」里即刻播放。</p>
+        </header>
+
+        <div class="dropzone" id="dropzone" tabindex="0">
+          <div class="dropzone-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="dz-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 16V6.5m0 0L8.4 10M12 6.5 15.6 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 15.5v2.2A2.3 2.3 0 0 0 6.8 20h10.4a2.3 2.3 0 0 0 2.3-2.3v-2.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="dz-title">把素材拖到这里</div>
+          <div class="dz-hint">同名照片 + 视频自动配对 · 支持 iPhone 实况、PNG、TIFF · 自动递归子目录</div>
+          <div class="dz-actions">
+            <button class="btn filled" id="btnPickFolder">
+              <svg viewBox="0 0 24 24" class="i"><path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              选择文件夹
+            </button>
+            <button class="btn tonal" id="btnPickFiles">添加文件</button>
+          </div>
+        </div>
+
+        <div class="stats" id="stats" hidden>
+          <div class="stat stat-primary"><span class="stat-value" id="statReady">0</span><span class="stat-label">可合成</span></div>
+          <div class="stat"><span class="stat-value" id="statDuplicate">0</span><span class="stat-label">已是动态照片</span></div>
+          <div class="stat"><span class="stat-value" id="statMissing">0</span><span class="stat-label">缺少视频</span></div>
+          <div class="stat"><span class="stat-value" id="statSize">0 MB</span><span class="stat-label">待处理体积</span></div>
+        </div>
+
+        <section class="list-section" id="pairSection" hidden>
+          <div class="section-head">
+            <h2 class="title-large">素材配对</h2>
+            <div class="section-actions">
+              <button class="text-btn" id="btnSelectReady">仅保留可合成</button>
+              <button class="text-btn" id="btnClear">清空</button>
+            </div>
+          </div>
+          <div class="pair-list" id="pairList"></div>
+        </section>
+      </div>
+
+      <footer class="actionbar" id="actionbar">
+        <div class="progress-strip" id="progressStrip" hidden><span id="progressFill"></span></div>
+        <div class="actionbar-inner">
+          <div class="output-block">
+            <button class="icon-btn" id="btnOutput" title="选择输出目录">
+              <svg viewBox="0 0 24 24"><path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="output-text">
+              <span class="output-label">输出目录</span>
+              <span class="output-path" id="outputPath">未选择 · 点击选择</span>
+            </div>
+          </div>
+          <div class="actionbar-hint" id="actionHint">选择素材后即可开始</div>
+          <button class="fab" id="btnStart" disabled>
+            <span class="fab-label">开始合成</span>
+            <svg viewBox="0 0 24 24" class="fab-icon"><path d="M9 6.5l8 5.5-8 5.5z" fill="currentColor"/></svg>
+            <span class="fab-spinner" hidden></span>
+          </button>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ============== 结果 ============== -->
+    <section class="page" id="page-results" data-page="results">
+      <div class="page-scroll">
+        <h1 class="headline">合成结果</h1>
+        <p class="supporting">合成后的文件可以直接用 Windows 11「照片」预览动效。</p>
+
+        <div class="result-cards">
+          <div class="result-card is-ok">
+            <span class="rc-value" id="resOk">0</span>
+            <span class="rc-label">成功</span>
+          </div>
+          <div class="result-card is-fail">
+            <span class="rc-value" id="resFail">0</span>
+            <span class="rc-label">失败</span>
+          </div>
+          <div class="result-card">
+            <span class="rc-value" id="resSkip">0</span>
+            <span class="rc-label">跳过 / 复制</span>
+          </div>
+        </div>
+
+        <div class="result-list" id="resultList"></div>
+        <div class="empty" id="resultsEmpty">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 3"/><path d="M12 8v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <p>合成结果会在这里列出</p>
+        </div>
+
+        <div class="row-actions">
+          <button class="btn filled" id="btnOpenOut" disabled>打开输出目录</button>
+          <button class="btn text" id="btnBackCompose">继续合成</button>
+        </div>
+
+        <details class="log-panel" id="logPanel">
+          <summary>运行日志</summary>
+          <pre id="logText"></pre>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============== 设置 ============== -->
+    <section class="page" id="page-settings" data-page="settings">
+      <div class="page-scroll narrow">
+        <h1 class="headline">设置</h1>
+
+        <section class="card">
+          <h2 class="title-medium">外观</h2>
+          <div class="setting-row">
+            <div class="setting-text"><span class="setting-name">主题模式</span><span class="setting-desc">跟随系统或手动指定明暗</span></div>
+            <div class="segmented" id="segTheme">
+              <button data-value="system" class="is-active">自动</button>
+              <button data-value="light">浅色</button>
+              <button data-value="dark">深色</button>
+            </div>
+          </div>
+          <div class="setting-row column">
+            <div class="setting-text"><span class="setting-name">主色调</span><span class="setting-desc">按 Material You 规则生成整套配色 · 可选跟随系统强调色</span></div>
+            <div class="swatches" id="swatches"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title-medium">合成</h2>
+          <div class="setting-row">
+            <div class="setting-text"><span class="setting-name">递归子目录</span><span class="setting-desc">扫描文件夹时一并处理子文件夹</span></div>
+            <label class="switch"><input type="checkbox" id="optRecursive" checked /><span></span></label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text"><span class="setting-name">复制未配对文件</span><span class="setting-desc">把没有对应视频的素材一并复制到输出目录</span></div>
+            <label class="switch"><input type="checkbox" id="optCopyAll" /><span></span></label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text"><span class="setting-name">同时写入旧版标签</span><span class="setting-desc">兼容只识别 MicroVideo 字段的老旧应用</span></div>
+            <label class="switch"><input type="checkbox" id="optLegacy" checked /><span></span></label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text"><span class="setting-name">保留文件时间</span><span class="setting-desc">输出文件沿用原照片的修改时间</span></div>
+            <label class="switch"><input type="checkbox" id="optPreserve" checked /><span></span></label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-text"><span class="setting-name">同名文件</span><span class="setting-desc">输出目录里已有同名文件的处理方式</span></div>
+            <div class="segmented" id="segOverwrite">
+              <button data-value="rename" class="is-active">重命名</button>
+              <button data-value="overwrite">覆盖</button>
+              <button data-value="skip">跳过</button>
+            </div>
+          </div>
+          <div class="setting-row column">
+            <div class="setting-text"><span class="setting-name">封面时间点</span><span class="setting-desc">照片对应视频中的哪一帧，Apple 默认 1.5 秒</span></div>
+            <div class="slider-row">
+              <input type="range" id="optTimestamp" min="0" max="3000" step="100" value="1500" />
+              <span class="slider-value" id="timestampValue">1.5s</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title-medium">存储</h2>
+          <div class="setting-row">
+            <div class="setting-text"><span class="setting-name">数据目录</span><span class="setting-desc mono" id="dataDirText">data</span></div>
+            <button class="text-btn" id="btnOpenData">打开</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============== 关于 ============== -->
+    <section class="page" id="page-about" data-page="about">
+      <div class="page-scroll narrow">
+        <h1 class="headline">关于</h1>
+        <section class="card about-card">
+          <div class="about-mark">
+            <svg viewBox="0 0 24 24"><path d="m10.775 15.475l4.6-3.05q.225-.15.225-.425t-.225-.425l-4.6-3.05q-.25-.175-.513-.038T10 8.926v6.15q0 .3.263.438t.512-.038M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12q0-.8.125-1.6T2.5 8.825q.125-.4.513-.537t.737.062q.375.2.538.588t.037.812q-.15.55-.238 1.113T4 12q0 3.35 2.325 5.675T12 20t5.675-2.325T20 12t-2.325-5.675T12 4q-.6 0-1.187.087T9.65 4.35q-.425.125-.8-.025T8.3 3.8t-.013-.762t.563-.513q.75-.275 1.55-.4T12 2q2.075 0 3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22M4.438 6.563Q4 6.125 4 5.5t.438-1.062T5.5 4t1.063.438T7 5.5t-.437 1.063T5.5 7t-1.062-.437M12 12"/></svg>
+          </div>
+          <div>
+            <div class="title-large">动态照片工坊 <span class="version" id="versionText">27.0.0</span></div>
+            <p class="supporting">使用现有的照片或视频，亦或是来自 iPhone 的实况，将其制作成动态照片。</p>
+          </div>
+        </section>
+        <section class="card">
+          <div class="setting-row">
+            <div class="setting-text">
+              <span class="setting-name">版本更新</span>
+              <span class="setting-desc" id="updateStatus">当前版本 <span class="mono">27.0.0</span></span>
+            </div>
+            <button class="text-btn" id="btnCheckUpdate">检查更新</button>
+          </div>
+        </section>
+        <section class="card">
+          <div class="kv"><span>开发者</span><span><a class="ext-link" href="https://github.com/XingYueFox" data-external>星月_Fox<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5.5a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 3 19.5v-12A1.5 1.5 0 0 1 4.5 6H10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></span></div>
+          <div class="kv"><span>项目</span><span><a class="ext-link" href="https://github.com/XingYueFox/MotionPhotoStudio" data-external>前往 Github<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5.5a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 3 19.5v-12A1.5 1.5 0 0 1 4.5 6H10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></span></div>
+          <div class="kv"><span>界面引擎</span><span class="mono" id="webviewText">WebView2</span></div>
+          <div class="kv"><span>程序目录</span><span class="mono ellipsis" id="exeDirText">—</span></div>
+          <div class="kv"><span>许可</span><span>GPL-3.0（衍生自上游项目）</span></div>
+        </section>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="snackbar" id="snackbar"><span id="snackbarText"></span><button id="snackbarAction" hidden></button></div>
+
+<script src="app.js"></script>
+</body>
+</html>

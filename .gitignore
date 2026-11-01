@@ -1,0 +1,29 @@
+# ---- 本地工具链（体积巨大，绝不入库）----
+.tools/
+
+# ---- 构建产物 ----
+build/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+.vs/
+
+# ---- 发布包（二进制请用 GitHub Release 附件分发）----
+dist/
+*.zip
+
+# ---- 自测素材（含个人照片，勿公开）----
+testdata/
+testdata-png/
+testdata-demo/
+mps-ref/
+
+# ---- 运行/工作目录 ----
+data/
+.workbuddy/
+
+# ---- 系统垃圾 ----
+Thumbs.db
+desktop.ini
+.DS_Store
