@@ -1,9 +1,9 @@
 # 动态照片工坊 Motion Photo Studio
 
-<img src="https://github.com/user-attachments/assets/b1df8cec-dcc8-47d0-8db4-890f6a8e8ea1" alt="main_banner" height="500px" />
-
 通过简洁明了的 UI，使用现有的照片或视频，亦或是来自 iPhone 的实况，将其制作成**动态照片**（Google Motion Photo）。
 Windows 11 自带「照片」或是 Google 相册和大部分安卓手机相册可以直接播放动效。
+
+<img src="https://github.com/user-attachments/assets/b1df8cec-dcc8-47d0-8db4-890f6a8e8ea1" alt="main_banner" height="500px" />
 
 项目灵感来自 [happycola233/MotionPhotoMaker](https://github.com/happycola233/MotionPhotoMaker)
 （衍生自 [MotionPhotoMuxer](https://github.com/mihir-io/MotionPhotoMuxer)）：
